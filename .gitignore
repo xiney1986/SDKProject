@@ -7,3 +7,7 @@
 /Android/YiJieTest/bin
 /YiJieTest/Temp
 /Android/.metadata
+/WebServer/bin
+/WebServer/obj
+/YiJieTest/packages
+/YiJieTest/.vs/config/applicationhost.config
