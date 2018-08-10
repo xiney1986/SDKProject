@@ -38,6 +38,7 @@ public class SdkManager : MonoBehaviour
     void Awake()
     {
         INSTANCE = this;
+#if UNITY_ANDROID&&!UNITY_EDITOR
         using (AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
         {
             using (AndroidJavaObject curActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity"))
@@ -45,6 +46,7 @@ public class SdkManager : MonoBehaviour
                 setLoginListener(curActivity.GetRawObject(), "SdkManager", "LoginResult");
             }
         }
+#endif
     }
 
     internal void CreateResult(string message)

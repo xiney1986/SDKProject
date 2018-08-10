@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 
 Project("{AEAC34DA-F4AE-D3ED-7C96-C9F98AE5F6C8}") = "YiJieTest", "Assembly-CSharp-vs.csproj", "{BB8ACCA1-DB93-7DBA-C006-A50DFD28B5EB}"
 EndProject
+Project("{AEAC34DA-F4AE-D3ED-7C96-C9F98AE5F6C8}") = "YiJieTest", "Assembly-CSharp-Editor-vs.csproj", "{4A213EBB-08EC-B48A-C53C-137B19444612}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,21 +15,24 @@ Global
 		{BB8ACCA1-DB93-7DBA-C006-A50DFD28B5EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB8ACCA1-DB93-7DBA-C006-A50DFD28B5EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB8ACCA1-DB93-7DBA-C006-A50DFD28B5EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A213EBB-08EC-B48A-C53C-137B19444612}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A213EBB-08EC-B48A-C53C-137B19444612}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A213EBB-08EC-B48A-C53C-137B19444612}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A213EBB-08EC-B48A-C53C-137B19444612}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																						GlobalSection(MonoDevelopProperties) = preSolution
+					GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
-		$0.TextStylePolicy = $1
+		$0.TextStylePolicy = $3
 		$1.inheritsSet = null
 		$1.scope = text/x-csharp
 		$0.CSharpFormattingPolicy = $2
 		$2.inheritsSet = Mono
 		$2.inheritsScope = text/x-csharp
 		$2.scope = text/x-csharp
-		$0.TextStylePolicy = $3
 		$3.FileWidth = 120
 		$3.TabWidth = 4
 		$3.IndentWidth = 4
