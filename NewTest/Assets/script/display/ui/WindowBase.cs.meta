@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 7b034534ec7568f4c83c12356765a9e1
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - darkBackGroundSprite: {instanceID: 0}
+  - TweenerGroup: {instanceID: 0}
+  - animRoot: {instanceID: 0}
+  - titlePrefab: {fileID: 100000, guid: 995e0fb096a940442884a08070e325ff, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
