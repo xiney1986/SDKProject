@@ -292,7 +292,7 @@ public class SdkManager : MonoBehaviour
 #endif
     }
 
-    public void Pay(string goodsId, int money)
+    public void Pay(json_Goods goods)
     {
 #if UNITY_ANDROID && !UNITY_EDITOR
         if (IS_SDK)
@@ -302,10 +302,22 @@ public class SdkManager : MonoBehaviour
             {
                 using (AndroidJavaObject curActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity"))
                 {
-                    pay(curActivity.GetRawObject(), "SdkManager", money, goodsId, 1, ServerManagerment.Instance.lastServer.sid + "|" + goodsId + "|" + SdkManager.UIN, ServerManagerment.Instance.lastServer.payUrl, "PayResult");
+                    pay(curActivity.GetRawObject(), "SdkManager", (int.Parse(goods.amount)*100).ToString(), goods.payName, 1, ServerManagerment.Instance.lastServer.sid + "|" + goods.id + "|" + SdkManager.UIN, ServerManagerment.Instance.lastServer.payUrl, "PayResult");
                 }
             }
+#elif QUICK
+            OrderInfo orderInfo = new OrderInfo();
+            orderInfo.goodsID = goods.id;
+            orderInfo.goodsName = goods.payName;
+            orderInfo.quantifier = "";
+            orderInfo.extrasParams = ServerManagerment.Instance.lastServer.sid + "|" + goods.id + "|" + SdkManager.UIN;
+            orderInfo.count = 1;
+            orderInfo.amount = double.Parse(goods.amount);
+            orderInfo.callbackUrl = ServerManagerment.Instance.lastServer.payUrl;
+            orderInfo.cpOrderID = "cporderidzzw";
+            QuickSDK.getInstance().pay(orderInfo, UserManager.Instance.self.ToRoleInfo());
 #endif
+
         }
 #endif
     }
@@ -316,12 +328,13 @@ public class SdkManager : MonoBehaviour
         jsonGoodsList = new List<json_Goods>();
 
         json_Goods goods = new json_Goods();
-        goods.id = "1";
+        goods.id = "6";
         goods.name = "6元购买1800钻石";
-        goods.amount = "1";
+        goods.amount = "6";
         goods.rate = "1800";
         goods.desc1 = "首次充值额外获得3600钻石";
         goods.desc2 = "goodsIcon_1";
+        goods.payName = "6元";
         jsonGoodsList.Add(goods);
 
         goods = new json_Goods();
@@ -331,6 +344,7 @@ public class SdkManager : MonoBehaviour
         goods.rate = "9000";
         goods.desc1 = "首次充值额外获得18000钻石";
         goods.desc2 = "goodsIcon_2";
+        goods.payName = "30元";
         jsonGoodsList.Add(goods);
 
         goods = new json_Goods();
@@ -340,6 +354,7 @@ public class SdkManager : MonoBehaviour
         goods.rate = "29400";
         goods.desc1 = "首次充值额外获得58800钻石";
         goods.desc2 = "goodsIcon_2";
+        goods.payName = "98元";
         jsonGoodsList.Add(goods);
 
         goods = new json_Goods();
@@ -349,6 +364,7 @@ public class SdkManager : MonoBehaviour
         goods.rate = "59400";
         goods.desc1 = "首次充值额外获得118800钻石";
         goods.desc2 = "goodsIcon_3";
+        goods.payName = "198元";
         jsonGoodsList.Add(goods);
 
         goods = new json_Goods();
@@ -358,6 +374,7 @@ public class SdkManager : MonoBehaviour
         goods.rate = "98400";
         goods.desc1 = "首次充值额外获得196800钻石";
         goods.desc2 = "goodsIcon_3";
+        goods.payName = "328元";
         jsonGoodsList.Add(goods);
 
         goods = new json_Goods();
@@ -367,6 +384,7 @@ public class SdkManager : MonoBehaviour
         goods.rate = "194400";
         goods.desc1 = "首次充值额外获得388800钻石";
         goods.desc2 = "goodsIcon_4";
+        goods.payName = "648元";
         jsonGoodsList.Add(goods);
 
         goods = new json_Goods();
@@ -376,6 +394,7 @@ public class SdkManager : MonoBehaviour
         goods.rate = "31";
         goods.desc1 = "购买月卡不参与首冲等充值活动";
         goods.desc2 = "goodsIcon_5";
+        goods.payName = "月卡";
         goods.type = 1;
         jsonGoodsList.Add(goods);
 
@@ -386,6 +405,7 @@ public class SdkManager : MonoBehaviour
         goods.rate = "31";
         goods.desc1 = "购买周卡不参与首冲等充值活动";
         goods.desc2 = "goodsIcon_6";
+        goods.payName = "周卡";
         goods.type = 2;
         jsonGoodsList.Add(goods);
 
@@ -435,7 +455,7 @@ public class SdkManager : MonoBehaviour
     public override void onLoginSuccess(UserInfo userInfo)
     {
         URL = "URL?uid=" + userInfo.uid + "&channel_code=" + QuickSDK.getInstance().channelType() + "&token=" + userInfo.token;
-        Debug.Log(URL);
+        UIN = userInfo.uid;
     }
 
     public override void onSwitchAccountSuccess(UserInfo userInfo)

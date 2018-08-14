@@ -27,6 +27,7 @@ public class json_Goods
     public string desc1;
     public string desc2;
     public string name;
+    public string payName;
     public int type;
     public json_Goods() { }
     public json_Goods(Dictionary<string, object> data)

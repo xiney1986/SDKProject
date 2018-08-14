@@ -35,7 +35,7 @@ public class ButtonRechargeItem : ButtonBase {
                     if (isBanner)
                         return;
 
-                    SdkManager.INSTANCE.Pay(goods.id, int.Parse(goods.amount));
+                    SdkManager.INSTANCE.Pay(goods.amount);
                 }
 			});	
 		}
@@ -43,7 +43,7 @@ public class ButtonRechargeItem : ButtonBase {
 			if (isBanner)
 				return;
 
-            SdkManager.INSTANCE.Pay(goods.id, int.Parse(goods.amount));
+            SdkManager.INSTANCE.Pay(goods.amount);
         }
 	}
 
